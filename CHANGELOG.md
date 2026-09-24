@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0 (2026-09-24)
+
+- Expanded menu music into an ordered four-track playlist using the three new owner-supplied themes.
+- Made each completed theme advance directly to the next, with theme 4 returning to the original theme.
+- Kept the current playlist track and position across menu changes, gameplay pauses and the session music toggle.
+- Added regression coverage for loading order, every playlist transition and wraparound to track 1.
+
+Validation: all 56 automated tests and the production build pass. All four source/runtime MP3 hashes match and every full file decodes without errors. A live production-build browser check loaded all four tracks beneath the `/dungleboy/` path and started menu playback after the required gesture.
+
+Release body: [v0.4.0](docs/releases/v0.4.0.md).
+
 ## 0.3.1 (2026-09-24)
 
 - Made every runtime image, sprite and audio URL respect Dungle Boy's configured `/dungleboy/` web path.

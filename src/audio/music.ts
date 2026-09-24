@@ -2,26 +2,36 @@ import type Phaser from 'phaser'
 import { assetUrl } from '../assetUrl'
 
 export const MENU_THEME = 'music-dungle-boy-theme'
-const states = new WeakMap<object, { wanted: boolean; muted: boolean; waiting: boolean; owner?: Phaser.Scene }>()
+export const MENU_PLAYLIST = [
+  { key: MENU_THEME, path: 'assets/audio/music/dungle-boy-theme.mp3' },
+  { key: 'music-dungle-boy-theme-2', path: 'assets/audio/music/dungle-boy-theme-2.mp3' },
+  { key: 'music-dungle-boy-theme-3', path: 'assets/audio/music/dungle-boy-theme-3.mp3' },
+  { key: 'music-dungle-boy-theme-4', path: 'assets/audio/music/dungle-boy-theme-4.mp3' },
+] as const
+
+const states = new WeakMap<object, { wanted: boolean; muted: boolean; waiting: boolean; index: number; owner?: Phaser.Scene }>()
 
 function stateFor(scene: Phaser.Scene) {
   let state = states.get(scene.sound)
-  if (!state) { state = { wanted: false, muted: false, waiting: false }; states.set(scene.sound, state) }
+  if (!state) { state = { wanted: false, muted: false, waiting: false, index: 0 }; states.set(scene.sound, state) }
   return state
 }
 
 export function preloadMusic(scene: Phaser.Scene): void {
-  if (!scene.cache.audio.exists(MENU_THEME)) scene.load.audio(MENU_THEME, assetUrl('assets/audio/music/dungle-boy-theme.mp3'))
+  for (const track of MENU_PLAYLIST) {
+    if (!scene.cache.audio.exists(track.key)) scene.load.audio(track.key, assetUrl(track.path))
+  }
 }
 
 function syncMusic(scene: Phaser.Scene): void {
   const state = stateFor(scene)
-  const existing = scene.sound.get(MENU_THEME)
+  const track = MENU_PLAYLIST[state.index]
+  const existing = scene.sound.get(track.key)
   if (!state.wanted || state.muted) {
     if (existing?.isPlaying) existing.pause()
     return
   }
-  if (!scene.cache.audio.exists(MENU_THEME)) return
+  if (!scene.cache.audio.exists(track.key)) return
   if (scene.sound.locked) {
     if (!state.waiting) {
       state.waiting = true
@@ -33,12 +43,20 @@ function syncMusic(scene: Phaser.Scene): void {
     }
     return
   }
-  const music = existing ?? scene.sound.add(MENU_THEME, { loop: true, volume: .45 })
+  const music = existing ?? scene.sound.add(track.key, { loop: false, volume: .45 })
   if (music.isPaused) music.resume()
-  else if (!music.isPlaying) music.play()
+  else if (!music.isPlaying) {
+    const finishingIndex = state.index
+    music.once('complete', () => {
+      if (state.index !== finishingIndex) return
+      state.index = (state.index + 1) % MENU_PLAYLIST.length
+      syncMusic(state.owner ?? scene)
+    })
+    music.play()
+  }
 }
 
-/** A single shared track resumes across menus; it never layers copies. */
+/** One shared playlist resumes across menus; tracks never layer copies. */
 export function enterMenuMusic(scene: Phaser.Scene): void {
   const state = stateFor(scene)
   state.owner = scene

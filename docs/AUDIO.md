@@ -1,12 +1,19 @@
 # Audio
 
-## Main theme
+## Menu themes
 
-The owner-supplied `dungle boy theme.mp3` is copied unchanged to `public/assets/audio/music/dungle-boy-theme.mp3` (84.36 seconds, stereo MP3, 48 kHz). SHA-256: `15d1ce399c23080efc5b830a5557fa05b7589b4283e1ef1183016e400bc478d4`.
+The four owner-supplied MP3s are copied unchanged into `public/assets/audio/music/`. All are stereo MP3 files at 48 kHz.
 
-`src/audio/music.ts` owns one looping track at 45% volume, shared by the main, game-over and level-clear menus. It pauses before gameplay and resumes its position on returning to a menu. There is no level music yet. Each menu has a music on/off control; the setting lasts for the current game session. Browser audio restrictions may require a click/tap first. A pending unlock cannot start music after entering a level, and scene shutdown cannot leave menu music running.
+| Playlist position | Runtime file | Duration | SHA-256 |
+| --- | --- | --- | --- |
+| 1 | `dungle-boy-theme.mp3` | 84.36 s | `15d1ce399c23080efc5b830a5557fa05b7589b4283e1ef1183016e400bc478d4` |
+| 2 | `dungle-boy-theme-2.mp3` | 66.40 s | `329e05c25e147166f7e2438f70a61172e051611174afae9a869a5b9ebaf22953` |
+| 3 | `dungle-boy-theme-3.mp3` | 57.56 s | `758a6cf81d9ace95e080fa1ff8df085070b92fbeca69f91eb1610780aff62ac4` |
+| 4 | `dungle-boy-theme-4.mp3` | 64.32 s | `c4e89db70a23c24049b9b721323b7c8f53f28545b20f7522bb53e8040f3f18aa` |
 
-Verification: source and repo file hashes match; the full MP3 decodes without errors. Four lifecycle tests cover looping-instance reuse, resume, scene shutdown and late browser unlock. Live Phaser checks confirmed playback after a gesture, music on/off, pause throughout a course, and resumption on its level-clear menu with exactly one theme instance. Listening balance can be adjusted independently of sound-effect volumes.
+`src/audio/music.ts` owns one ordered playlist at 45% volume, shared by the main, game-over and level-clear menus. Each track advances directly into the next; theme 4 returns to the original theme. The current track pauses before gameplay and resumes its position on returning to a menu. There is no level music yet. Each menu has a music on/off control; the setting lasts for the current game session. Browser audio restrictions may require a click/tap first. A pending unlock cannot start music after entering a level, and scene shutdown cannot leave menu music running.
+
+Verification: all four source and repo file hashes match, and every complete MP3 decodes without errors. Playlist lifecycle tests cover preload order, all four transitions, wraparound, resume, scene shutdown and late browser unlock. Listening balance can be adjusted independently of sound-effect volumes.
 
 ## Sound effects
 
