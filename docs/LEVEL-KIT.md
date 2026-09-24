@@ -19,7 +19,9 @@ Runtime PNGs live under `public/assets/level-kit/`. Each animated sheet is 1024 
 
 Grounded props use origin `(0.5, 0.9375)`, placing the bottom anchor at source pixel `(128, 240)`; rotor and pickups use `(0.5, 0.5)`. Keep transparent padding when loading. Do not use the entire padded frame as a collision rectangle. Choose gameplay bodies independently of glow and illustration bounds. Suggested initial display scale: 0.25–0.5, tuned to each level. Generated animation has subtle hand-painted frame variation.
 
-The spike sequence is retracted, tips, half, extended, glowing extended, extended, half, tips. Damage activation must be coordinated with the chosen animation phase by the level implementation. The library provides visuals only; shield, magnet, speed-pad effects, moving hazards, collision rules and new levels are not implemented by this asset addition.
+The spike sequence is retracted, tips, half, extended, glowing extended, extended, half, tips. `WorldSpawner` now places and animates hazards in Crystal Aqueduct and Ember Foundry. `HazardCollision` checks the current frame's opaque damage pixels, with crystal outlines excluding the socket; the fully retracted frame cannot hurt. Rotors use their current opaque silhouette. Original spike art also uses triangular contact instead of its bounding box. Hazards do not translate through the world; rotors rotate and spikes extend/retract in place.
+
+Placed orbs and pads are functional: jump (1.35× jump velocity for 5 seconds), shield (one hit, 6.5-second lifetime), magnet (150-pixel coin attraction for 6 seconds), and pad (1.15× speed for 1.8 seconds). Pads trigger once per run, remain visible and dim after activation. The base `LevelKit` sprite factory remains visual-only; gameplay integration belongs to `WorldSpawner`, `GameScene` and `PowerupController`.
 
 ## Phaser use
 

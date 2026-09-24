@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "assets": [
+    [
+      "crystal-aqueduct",
+      "A vast alien crystal aqueduct in cool morning light: tall translucent teal and seafoam crystal cliffs, immense pale lavender arches carrying streams of luminous water across the distance, floating gardens, thin waterfalls disappearing into low cloud, pale turquoise sky, a small pale moon on the LEFT. Distinct from a purple planetary sunset. Layered hand-painted gouache 2D animation background, softly dimensional, pastel lavender structural metal, cyan and mint lights, cream highlights, matching a cute cream marshmallow platform game. Wide side-scrolling composition 16:9. Detailed architecture and atmospheric silhouettes largely in lower half and at sides, calm readable negative space at player height. No foreground ground or platforms, no characters, no hazards, no words or UI. Complete opaque landscape painting."
+    ],
+    [
+      "ember-foundry",
+      "An enormous orbital reactor foundry above a volcanic cloud sea at night: distant rounded dark plum industrial towers, copper pipes and suspended furnace rings, glowing peach-orange energy channels, dusky burgundy and indigo sky with tiny stars, a huge distant broken orbital ring arcing from LEFT to center, molten amber clouds far below. Warm ember palette with restrained mint status lights and lavender ceramic-metal architecture. Distinct from a purple planetary sunset and from a mint crystal valley. Polished hand-painted gouache 2D cartoon animation background, softly dimensional and friendly sci-fi to match a cream marshmallow platformer. Wide side-scrolling 16:9 composition. Keep player-height middle area low contrast and uncluttered, distance only. No foreground platforms, no characters, no hazards, no text, no UI. Complete opaque landscape painting."
+    ]
+  ]
+}

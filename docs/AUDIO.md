@@ -1,4 +1,14 @@
-# Sound effects
+# Audio
+
+## Main theme
+
+The owner-supplied `dungle boy theme.mp3` is copied unchanged to `public/assets/audio/music/dungle-boy-theme.mp3` (84.36 seconds, stereo MP3, 48 kHz). SHA-256: `15d1ce399c23080efc5b830a5557fa05b7589b4283e1ef1183016e400bc478d4`.
+
+`src/audio/music.ts` owns one looping track at 45% volume, shared by the main, game-over and level-clear menus. It pauses before gameplay and resumes its position on returning to a menu. There is no level music yet. Each menu has a music on/off control; the setting lasts for the current game session. Browser audio restrictions may require a click/tap first. A pending unlock cannot start music after entering a level, and scene shutdown cannot leave menu music running.
+
+Verification: source and repo file hashes match; the full MP3 decodes without errors. Four lifecycle tests cover looping-instance reuse, resume, scene shutdown and late browser unlock. Live Phaser checks confirmed playback after a gesture, music on/off, pause throughout a course, and resumption on its level-clear menu with exactly one theme instance. Listening balance can be adjusted independently of sound-effect volumes.
+
+## Sound effects
 
 The approved set is integrated: J1 layers the first jump's pluck and phase jump simultaneously; L3 uses krnash's deep, filtered pillow recording for landing. The other eleven selections are recorded in `assets/sfx-audition/selections.json` and `CREDITS.md`.
 

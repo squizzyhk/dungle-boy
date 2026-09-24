@@ -7,6 +7,7 @@ import {
 } from '../constants'
 import type { Segment, SegmentSource } from '../types'
 import { FinishGate } from '../graphics/FinishGate'
+import { addLevelKitSprite, type LevelKitId } from '../graphics/LevelKit'
 
 type Piece = Phaser.GameObjects.Sprite | Phaser.GameObjects.TileSprite
 
@@ -20,6 +21,7 @@ export class WorldSpawner {
     private readonly hazards: Phaser.Physics.Arcade.StaticGroup,
     private readonly pickups: Phaser.Physics.Arcade.StaticGroup,
     private readonly finish: Phaser.Physics.Arcade.StaticGroup,
+    private readonly theme?: string,
   ) {}
 
   update(aheadX: number, behindX: number): void {
@@ -37,6 +39,19 @@ export class WorldSpawner {
     }
   }
 
+  attractCoins(x: number, y: number, radius: number, dt: number): void {
+    if (!radius) return
+    for (const piece of this.pieces) {
+      if (!piece.active || piece.getData('itemId') !== 'coin') continue
+      const dx = x - (piece.x + piece.displayWidth / 2), dy = y - (piece.y + piece.displayHeight / 2)
+      const distance = Math.hypot(dx, dy)
+      if (distance > radius) continue
+      const step = Math.min(1, dt * .012)
+      piece.x += dx * step; piece.y += dy * step
+      ;(piece.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject()
+    }
+  }
+
   private spawn(segment: Segment): Piece | null {
     switch (segment.type) {
       case 'gap':
@@ -46,6 +61,14 @@ export class WorldSpawner {
       case 'platform':
         return this.addTile(this.platforms, segment.x, segment.y, segment.width, segment.height, 'platform', 3)
       case 'obstacle':
+        if (segment.kind !== 'crate' && segment.kind !== 'spike') {
+          const sprite = this.addKit(this.hazards, segment.kind, segment.x, segment.y, segment.width, segment.height)
+          sprite.setData('hazardKind', segment.kind)
+          if (segment.kind === 'retracting-spikes' || segment.kind === 'plasma-rotor') {
+            sprite.play({ key: `level-kit:${segment.kind}`, startFrame: segment.phase ?? 0 })
+          }
+          return sprite
+        }
         return this.addSprite(
           this.hazards,
           segment.x,
@@ -54,8 +77,22 @@ export class WorldSpawner {
           segment.height,
           segment.kind,
           4,
-        )
+        ).setData('hazardKind', segment.kind)
+      case 'pad': {
+        const pad = this.addKit(this.pickups, 'boost-pad', segment.x, segment.y, segment.width, segment.height)
+        pad.setData('itemId', 'speed-pad')
+        // Contact strip follows the visible plate, not the empty square above it.
+        const body = pad.body as Phaser.Physics.Arcade.StaticBody
+        body.setSize(segment.width * .88, segment.height * .22)
+        body.setOffset(segment.width * .06, segment.height * .72)
+        return pad
+      }
       case 'pickup':
+        if (segment.itemId.endsWith('-orb')) {
+          const orb = this.addKit(this.pickups, segment.itemId as LevelKitId, segment.x, segment.y, 44, 44).setData('itemId', segment.itemId)
+          ;(orb.body as Phaser.Physics.Arcade.StaticBody).setCircle(14, 0, 0).setOffset(8, 8)
+          return orb
+        }
         return this.addSprite(
           this.pickups,
           segment.x,
@@ -95,10 +132,21 @@ export class WorldSpawner {
     depth: number,
   ): Phaser.GameObjects.TileSprite {
     const tile = this.scene.add.tileSprite(x, y, width, height, texture).setOrigin(0, 0).setDepth(depth)
+    if (this.theme === 'crystal-aqueduct') tile.setTint(0xb4fff3)
+    if (this.theme === 'ember-foundry') tile.setTint(0xffbe9d)
     this.scene.physics.add.existing(tile, true)
     ;(tile.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject()
     group.add(tile)
     return tile
+  }
+
+  private addKit(group: Phaser.Physics.Arcade.StaticGroup, id: LevelKitId, x: number, y: number, width: number, height: number): Phaser.GameObjects.Sprite {
+    const sprite = addLevelKitSprite(this.scene, id, x, y)
+    sprite.setOrigin(0).setDisplaySize(width, height).setDepth(4)
+    this.scene.physics.add.existing(sprite, true)
+    ;(sprite.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject()
+    group.add(sprite)
+    return sprite
   }
 
   private addSprite(

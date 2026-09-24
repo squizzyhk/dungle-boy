@@ -1,5 +1,9 @@
 # Credits
 
+## Main theme
+
+**Dungle Boy theme**: supplied by the project owner as `dungle boy theme.mp3` on 24 September 2026. Included unchanged as the menu theme. This track is separate from the CC0 sound-effect packs below; no additional authorship or license claim is inferred.
+
 ## Sound effects
 
 Sound effects by **Kenney / Kenney Vleugels**, https://kenney.nl. Licensed under **Creative Commons Zero 1.0 (CC0-1.0)**: https://creativecommons.org/publicdomain/zero/1.0/. The included pack licenses permit personal and commercial use; attribution is optional and retained here.

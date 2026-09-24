@@ -1,5 +1,6 @@
 // Development-only visual fixture. This entry is not included in production builds.
 import Phaser from 'phaser'
+import { ContactQA } from './contact-qa'
 import { installAudioQA } from './audio-qa'
 import { GAME_WIDTH, GAME_HEIGHT, GRAVITY, SCENE, GROUND_Y } from '../src/constants'
 import { MenuScene } from '../src/scenes/MenuScene'
@@ -11,7 +12,7 @@ import { FinishGate } from '../src/graphics/FinishGate'
 import { Player } from '../src/entities/Player'
 import { SpaceBackdrop } from '../src/graphics/SpaceBackdrop'
 const status = document.querySelector('#status')!
-const routes = [[768,1605,2110,2451,3420,4492,4861],[676,1137,1660,2545,3001,3580,4718,5612],[682,1515,2037,2623,3440,4677,5285,5759,6263]]
+const routes = [[768,1605,2110,2451,3420,4492,4861],[780,1500,1905,2355,3265,3810,4380,4810,5640,6110],[740,1190,1580,2740,3150,3550,4330,4660,5265,5870,6290,7070,7530,8010]]
 let level = 0
 class RunQA extends GameScene {
   create() {
@@ -25,7 +26,7 @@ class RunQA extends GameScene {
       clock += dt; since += dt
       if (target.state === 'playing') {
         if (i < route.length && p.x >= route[i]) {
-          double = route[i] === [3420,3580,3440][level]
+          double = route[i] === [3420,3265,4660][level]
           i++; since = 0
         }
         p.space.isDown = since < 330 || (double && since >= 365 && since < 800)
@@ -84,7 +85,7 @@ class StrideQA extends Phaser.Scene {
     status.textContent=`24-frame rig | normal frame ${this.normal.frame.name} | slow frame ${this.slow.frame.name}`
   }
 }
-const app=new Phaser.Game({type:Phaser.WEBGL,parent:'app',width:GAME_WIDTH,height:GAME_HEIGHT,backgroundColor:'#101934',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH},physics:{default:'arcade',arcade:{gravity:{x:0,y:GRAVITY},debug:false}},scene:[MenuScene,RunQA,HudScene,LevelCompleteScene,GameOverScene,Showcase,StrideQA]})
+const app=new Phaser.Game({type:Phaser.WEBGL,parent:'app',width:GAME_WIDTH,height:GAME_HEIGHT,backgroundColor:'#101934',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH},physics:{default:'arcade',arcade:{gravity:{x:0,y:GRAVITY},debug:false}},scene:[MenuScene,RunQA,HudScene,LevelCompleteScene,GameOverScene,Showcase,StrideQA,ContactQA]})
 installAudioQA(app)
 function stop() {for (const s of app.scene.getScenes(true)) app.scene.stop(s.scene.key)}
 document.querySelectorAll('[data-level]').forEach(button=>button.addEventListener('click',()=>{level=Number(button.getAttribute('data-level'));stop();app.scene.start(SCENE.game,{levelIndex:level})}))
@@ -93,3 +94,6 @@ document.querySelector('#motion')!.addEventListener('click',()=>{stop();app.scen
 status.textContent='Ready for live Phaser checks'
 
 document.querySelector('#stride')!.addEventListener('click',()=>{stop();app.scene.start('stride')})
+const contactButton = document.createElement('button'); contactButton.textContent = 'Check spike contacts'
+contactButton.onclick = () => { stop(); app.scene.start('contact-qa') }
+document.querySelector('#controls')!.append(contactButton)

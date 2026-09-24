@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import { preloadSfx } from '../audio/sfx'
+import { preloadMusic, enterMenuMusic, addMusicControl } from '../audio/music'
 import { SCENE } from '../constants'
 import { levels } from '../data/levels'
 import { ensureTextures, preloadArtwork } from '../graphics/textures'
@@ -14,9 +15,11 @@ export class MenuScene extends Phaser.Scene {
   private hero!: Phaser.GameObjects.Sprite
   constructor() { super(SCENE.menu) }
 
-  preload(): void { preloadArtwork(this); preloadSfx(this) }
+  preload(): void { preloadArtwork(this); preloadSfx(this); preloadMusic(this) }
 
   create(): void {
+    enterMenuMusic(this)
+    addMusicControl(this)
     ensureTextures(this)
     this.backdrop = new SpaceBackdrop(this)
     this.add.rectangle(0,0,520,540,0x111a35,.58).setOrigin(0)

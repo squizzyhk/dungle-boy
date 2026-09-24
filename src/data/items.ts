@@ -18,6 +18,10 @@ export const jumpBoost: ItemDef = {
 const catalog: Record<string, ItemDef> = {
   [coin.id]: coin,
   [jumpBoost.id]: jumpBoost,
+  'jump-orb': { ...jumpBoost, id: 'jump-orb' },
+  'shield-orb': { id: 'shield-orb', label: 'Shield', kind: 'timed', durationMs: 6500, shield: 1 },
+  'magnet-orb': { id: 'magnet-orb', label: 'Coin magnet', kind: 'timed', durationMs: 6000, magnetRadius: 150 },
+  'speed-pad': { id: 'speed-pad', label: 'Speed pad', kind: 'timed', durationMs: 1800, speedMultiplier: 1.15 },
 }
 
 export function getItem(id: string): ItemDef {

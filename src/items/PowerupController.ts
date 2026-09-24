@@ -11,6 +11,7 @@ const baseModifiers = (): RunModifiers => ({
   jumpMultiplier: 1,
   scoreMultiplier: 1,
   shield: 0,
+  magnetRadius: 0,
 })
 
 export class PowerupController {
@@ -85,17 +86,20 @@ export class PowerupController {
     let jumpMultiplier = 1
     let scoreMultiplier = 1
     let shield = this.permanentShield
+    let magnetRadius = 0
 
     for (const effect of this.effects) {
       speedMultiplier *= effect.def.speedMultiplier ?? 1
       jumpMultiplier *= effect.def.jumpMultiplier ?? 1
       scoreMultiplier *= effect.def.scoreMultiplier ?? 1
       shield += effect.shieldLeft
+      magnetRadius = Math.max(magnetRadius, effect.def.magnetRadius ?? 0)
     }
 
     this.modifiers.speedMultiplier = speedMultiplier
     this.modifiers.jumpMultiplier = jumpMultiplier
     this.modifiers.scoreMultiplier = scoreMultiplier
     this.modifiers.shield = shield
+    this.modifiers.magnetRadius = magnetRadius
   }
 }

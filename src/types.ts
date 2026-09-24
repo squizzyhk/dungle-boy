@@ -3,6 +3,7 @@ export type RunModifiers = {
   jumpMultiplier: number
   scoreMultiplier: number
   shield: number
+  magnetRadius: number
 }
 
 export type ItemContext = {
@@ -20,6 +21,7 @@ export type ItemDef = {
   jumpMultiplier?: number
   scoreMultiplier?: number
   shield?: number
+  magnetRadius?: number
   onCollect?: (ctx: ItemContext) => void
   onExpire?: (ctx: ItemContext) => void
 }
@@ -33,10 +35,12 @@ export type Segment =
       y: number
       width: number
       height: number
-      kind: 'crate' | 'spike'
+      kind: 'crate' | 'spike' | 'reactor-crate' | 'crystal-cluster' | 'retracting-spikes' | 'plasma-rotor'
+      phase?: number
     }
   | { type: 'gap'; x: number; width: number }
   | { type: 'pickup'; x: number; y: number; itemId: string }
+  | { type: 'pad'; x: number; y: number; width: number; height: number }
   | { type: 'finish'; x: number }
 
 export type LevelConfig = {
@@ -45,6 +49,7 @@ export type LevelConfig = {
   startSpeed: number
   accelPerSecond: number
   maxSpeed: number
+  background?: 'crystal-aqueduct' | 'ember-foundry'
   segments: Segment[]
 }
 

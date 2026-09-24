@@ -1,4 +1,6 @@
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
+import sharp from 'sharp'
+import { damageMask, maskTouchesPlayer } from '../world/HazardShape'
 import {
   GRAVITY,
   GROUND_Y,
@@ -25,21 +27,40 @@ const routes: PlannedJump[][] = [
     { x: 3420, doubleAt: 0.35 }, { x: 4492 }, { x: 4861 },
   ],
   [
-    { x: 676 }, { x: 1137 }, { x: 1660 }, { x: 2545 }, { x: 3001 },
-    { x: 3580, doubleAt: 0.35 }, { x: 4718 }, { x: 5612 },
+    { x: 780 }, { x: 1500 }, { x: 1905 }, { x: 2355 },
+    { x: 3265, doubleAt: .35 }, { x: 3810 }, { x: 4380 },
+    { x: 4810 }, { x: 5640 }, { x: 6110 },
   ],
   [
-    { x: 682 }, { x: 1515 }, { x: 2037 }, { x: 2623 },
-    { x: 3440, doubleAt: 0.35 }, { x: 4677 }, { x: 5285 }, { x: 5759 }, { x: 6263 },
+    { x: 740 }, { x: 1190 }, { x: 1580 }, { x: 2740 },
+    { x: 3150 }, { x: 3550 }, { x: 4330 },
+    { x: 4660, doubleAt: .35 }, { x: 5265 },
+    { x: 5870 }, { x: 6290 }, { x: 7070 }, { x: 7530 }, { x: 8010 },
   ],
 ]
 
-const upperRouteJumps = [[1130, 2780], [2060, 5090], [1050, 2960]]
+const upperRouteJumps = [[1130, 2780], [1110, 6430], [3880]]
+
+// Read the actual shipped art. Union every animation frame for a worst-phase
+// route test: a passing route never depends on luck with trap timing.
+const masks = new Map<string, Uint8Array>()
+beforeAll(async () => {
+  for (const kind of ['reactor-crate', 'crystal-cluster', 'retracting-spikes', 'plasma-rotor'] as const) {
+    const animated = kind === 'retracting-spikes' || kind === 'plasma-rotor'
+    const union = new Uint8Array(256 * 256)
+    for (let frame = 0; frame < (animated ? 8 : 1); frame++) {
+      const rgba = await sharp(`public/assets/level-kit/obstacles/${kind}.png`).extract({ left: frame % 4 * 256, top: Math.floor(frame / 4) * 256, width: 256, height: 256 }).ensureAlpha().raw().toBuffer()
+      const mask = damageMask(rgba, 256, 256, kind, frame)
+      mask.forEach((v, i) => { union[i] ||= v })
+    }
+    masks.set(kind, union)
+  }
+})
 
 describe('levels', () => {
   it('moves through three distinct courses, then back to the menu', () => {
     expect(levels.map((level) => level.name)).toEqual([
-      'Orbital Garden', 'Relay Heights', 'Stardust Sprint',
+      'Orbital Garden', 'Crystal Aqueduct', 'Ember Foundry',
     ])
     expect(new Set(levels.map((level) => level.id)).size).toBe(3)
     expect(nextLevel(0, levels.length)).toBe(1)
@@ -63,7 +84,7 @@ describe('levels', () => {
       expect(grounds[0].x).toBe(0)
       expect(Math.min(...hazards.map((hazard) => hazard.x)) - PLAYER_START_X).toBeGreaterThan(600)
       expect(level.segments.filter((segment) => segment.type === 'pickup' && segment.itemId === 'coin').length).toBeGreaterThan(25)
-      expect(level.segments.some((segment) => segment.type === 'pickup' && segment.itemId === 'jump-boost')).toBe(true)
+      expect(level.segments.some((segment) => segment.type === 'pickup' && ['jump-boost', 'jump-orb'].includes(segment.itemId))).toBe(true)
       expect(platforms.some((platform) => GROUND_Y - platform.y < singleHop)).toBe(true)
 
       const finishX = finishes[0].x
@@ -74,23 +95,26 @@ describe('levels', () => {
       expect(worldWidth(level)).toBeGreaterThan(finishX + 500)
 
       for (const hazard of hazards) {
-        expect(grounds.some((floor) => hazard.x >= floor.x && hazard.x + hazard.width <= floor.x + floor.width)).toBe(true)
+        expect([...grounds, ...platforms].some((floor) => hazard.x >= floor.x && hazard.x + hazard.width <= floor.x + floor.width)).toBe(true)
       }
     }
   })
 
-  it('places exactly one isolated high relay inside the unboosted double jump range', () => {
+  it('keeps elevated islands inside the unboosted double jump range', () => {
     for (const level of levels) {
       const highPlatforms = level.segments.filter(
         (segment) => segment.type === 'platform' && GROUND_Y - segment.y > singleHop + 8,
       )
-      expect(highPlatforms).toHaveLength(1)
-      const relay = highPlatforms[0]
+      expect(highPlatforms.length).toBeGreaterThanOrEqual(1)
+      for (const relay of highPlatforms) {
       if (relay.type !== 'platform') throw new Error('Expected relay platform')
-      expect(GROUND_Y - relay.y).toBeLessThan(doubleHop - 20)
+      const preceding = level.segments.filter(s => (s.type === 'ground' || s.type === 'platform') && s.x < relay.x).at(-1)!
+      if (preceding.type !== 'ground' && preceding.type !== 'platform') throw new Error('Expected preceding surface')
+      expect(preceding.y - relay.y).toBeLessThan(doubleHop - 20)
       expect(level.segments.some((segment) =>
         segment.type === 'ground' && segment.x < relay.x + relay.width && segment.x + segment.width > relay.x,
       )).toBe(false)
+      }
     }
   })
 
@@ -101,7 +125,7 @@ describe('levels', () => {
         expect(result.failure, `${level.name} at ${hz} Hz: ${result.failure}`).toBeNull()
         expect(result.finished).toBe(true)
         expect(result.usedJumps).toBe(routes[index].length)
-        expect(result.highRelayLandings).toBe(1)
+        expect(result.highRelayLandings).toBeGreaterThanOrEqual(1)
       }
     })
 
@@ -112,7 +136,7 @@ describe('levels', () => {
         const result = simulateRoute(level, upperRoute, 1 / hz)
         expect(result.failure, `${level.name} upper route at ${hz} Hz: ${result.failure}`).toBeNull()
         expect(result.finished).toBe(true)
-        expect(result.lowPlatformLandings).toBe(upperRouteJumps[index].length)
+        expect(result.lowPlatformLandings).toBeGreaterThanOrEqual(upperRouteJumps[index].length)
       }
     })
 
@@ -188,10 +212,12 @@ function simulateRoute(level: LevelConfig, route: PlannedJump[], dt: number) {
       }
     }
 
-    const collision = hazards.find((hazard) =>
-      x + PLAYER_WIDTH / 2 > hazard.x && x - PLAYER_WIDTH / 2 < hazard.x + hazard.width &&
-      feet > hazard.y && feet - PLAYER_HEIGHT < hazard.y + hazard.height,
-    )
+    const collision = hazards.find((hazard) => {
+      const mask = masks.get(hazard.kind)
+      if (mask) return maskTouchesPlayer(mask, 256, 256, hazard, { x: x - PLAYER_WIDTH / 2, y: feet - PLAYER_HEIGHT, width: PLAYER_WIDTH, height: PLAYER_HEIGHT })
+      return x + PLAYER_WIDTH / 2 > hazard.x && x - PLAYER_WIDTH / 2 < hazard.x + hazard.width &&
+        feet > hazard.y && feet - PLAYER_HEIGHT < hazard.y + hazard.height
+    })
     if (collision) {
       failure = `hit ${collision.kind} at x=${collision.x} with feet=${feet.toFixed(1)}`
       break

@@ -1,8 +1,24 @@
 import { describe, expect, it } from 'vitest'
-import { coin, jumpBoost } from '../data/items'
+import { coin, jumpBoost, getItem } from '../data/items'
 import { PowerupController } from './PowerupController'
 
 describe('PowerupController', () => {
+  it('activates the placed orb and pad definitions and unwinds their effects', () => {
+    const powers = new PowerupController()
+    for (const id of ['speed-pad', 'magnet-orb', 'shield-orb', 'jump-orb']) powers.collect(getItem(id), () => {})
+    expect(powers.modifiers.speedMultiplier).toBe(1.15)
+    expect(powers.modifiers.magnetRadius).toBe(150)
+    expect(powers.modifiers.jumpMultiplier).toBe(1.35)
+    expect(powers.tryAbsorbHit()).toBe(true)
+    expect(powers.tryAbsorbHit()).toBe(false)
+    powers.update(1800)
+    expect(powers.modifiers.speedMultiplier).toBe(1)
+    expect(powers.modifiers.magnetRadius).toBe(150)
+    powers.update(4700)
+    expect(powers.modifiers.magnetRadius).toBe(0)
+    expect(powers.modifiers.jumpMultiplier).toBe(1)
+    expect(powers.activeEffects).toEqual([])
+  })
   it('adds coin score using the current score multiplier', () => {
     const powerups = new PowerupController()
     let gained = 0

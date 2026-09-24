@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { leaveMenuMusic } from '../audio/music'
 import { playSfx, type Sfx } from '../audio/sfx'
 import {
   DESPAWN_MARGIN,
@@ -20,6 +21,7 @@ import { runSpeed } from '../run/speed'
 import type { HudState } from '../types'
 import { AuthoredSegmentSource } from '../world/SegmentSource'
 import { WorldSpawner } from '../world/WorldSpawner'
+import { touchesHazard } from '../world/HazardCollision'
 
 type RunState = 'playing' | 'dead' | 'complete'
 
@@ -52,9 +54,10 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
+    leaveMenuMusic(this)
     ensureTextures(this)
     const level = getLevel(this.levelIndex)
-    this.backdrop = new SpaceBackdrop(this)
+    this.backdrop = new SpaceBackdrop(this, level.background)
 
     const platforms = this.physics.add.staticGroup()
     const hazards = this.physics.add.staticGroup()
@@ -69,11 +72,12 @@ export class GameScene extends Phaser.Scene {
       hazards,
       pickups,
       finish,
+      level.background,
     )
     this.spawner.update(this.player.x + LOOKAHEAD, -1000)
 
     this.physics.add.collider(this.player, platforms, undefined, this.landFromAbove, this)
-    this.physics.add.overlap(this.player, hazards, this.onHazard, undefined, this)
+    this.physics.add.overlap(this.player, hazards, this.onHazard, this.preciseHazardContact, this)
     this.physics.add.overlap(this.player, pickups, this.onPickup, undefined, this)
     this.physics.add.overlap(this.player, finish, this.onFinish, undefined, this)
 
@@ -103,6 +107,7 @@ export class GameScene extends Phaser.Scene {
       this.player.x + LOOKAHEAD,
       this.cameras.main.scrollX - DESPAWN_MARGIN,
     )
+    this.spawner.attractCoins(this.player.x, this.player.y - 22, this.powerups.modifiers.magnetRadius, dt)
 
     const moved = Math.max(0, this.player.x - this.lastX)
     this.distancePoints += (moved / 10) * this.powerups.modifiers.scoreMultiplier
@@ -148,7 +153,14 @@ export class GameScene extends Phaser.Scene {
       this.player.flash()
       return
     }
-    this.fail(hazard.texture.key === 'spike' ? 'spike' : 'reactor')
+    const kind = hazard.getData('hazardKind') as string
+    this.fail(kind === 'crate' || kind === 'reactor-crate' ? 'reactor' : 'spike')
+  }
+
+  private preciseHazardContact: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback = (_player, hazard) => {
+    if (!(hazard instanceof Phaser.GameObjects.Sprite) || this.state !== 'playing') return false
+    const body = this.player.body as Phaser.Physics.Arcade.Body
+    return touchesHazard(hazard, { x: body.x, y: body.y, width: body.width, height: body.height })
   }
 
   private onPickup: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback = (_player, pickup) => {
@@ -158,7 +170,8 @@ export class GameScene extends Phaser.Scene {
     const itemId = pickup.getData('itemId') as string
     playSfx(this, itemId === 'coin' ? 'coin' : 'boost')
     pickup.setData('taken', true)
-    pickup.destroy()
+    if (itemId === 'speed-pad') pickup.setTint(0x829aab)
+    else pickup.destroy()
     this.powerups.collect(getItem(itemId), (amount) => {
       this.bankedScore += amount
     })

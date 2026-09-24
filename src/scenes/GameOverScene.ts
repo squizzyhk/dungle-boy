@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { enterMenuMusic, addMusicControl } from '../audio/music'
 import { GAME_WIDTH, SCENE } from '../constants'
 import { addButton } from '../ui/button'
 import { FONT, INK } from '../ui/theme'
@@ -22,6 +23,8 @@ export class GameOverScene extends Phaser.Scene {
   }
 
   create(data: OverData): void {
+    enterMenuMusic(this)
+    addMusicControl(this)
     this.add.rectangle(GAME_WIDTH / 2, 270, 960, 540, 0x1b1e2b, 0.55)
     this.add.rectangle(GAME_WIDTH / 2, 294, 480, 368, 0x252542).setStrokeStyle(2, 0x92c8ee)
 

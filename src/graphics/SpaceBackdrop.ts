@@ -6,8 +6,8 @@ export class SpaceBackdrop {
   private readonly motes: Phaser.GameObjects.Arc[] = []
   private readonly structures: Phaser.GameObjects.Graphics
 
-  constructor(scene: Phaser.Scene) {
-    this.painting = scene.add.image(0, 0, 'orbital-garden').setOrigin(0).setScrollFactor(0).setDepth(-10)
+  constructor(scene: Phaser.Scene, key = 'orbital-garden') {
+    this.painting = scene.add.image(0, 0, key).setOrigin(0).setScrollFactor(0).setDepth(-10)
     this.painting.setDisplaySize(GAME_WIDTH + 180, GAME_HEIGHT + 102)
     // A few quiet courier lights add parallax without covering the painted architecture.
     this.structures = scene.add.graphics().setScrollFactor(0).setDepth(-7)
