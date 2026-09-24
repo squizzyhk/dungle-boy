@@ -19,7 +19,7 @@ export class MenuScene extends Phaser.Scene {
     this.add.tileSprite(0, 448, GAME_WIDTH, 140, 'ground').setOrigin(0, 0)
 
     this.add
-      .text(GAME_WIDTH / 2, 78, 'Caspas', {
+      .text(GAME_WIDTH / 2, 78, 'Dungle Boy', {
         fontFamily: FONT,
         fontSize: '72px',
         color: INK,
