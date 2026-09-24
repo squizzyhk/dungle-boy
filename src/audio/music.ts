@@ -1,4 +1,5 @@
 import type Phaser from 'phaser'
+import { assetUrl } from '../assetUrl'
 
 export const MENU_THEME = 'music-dungle-boy-theme'
 const states = new WeakMap<object, { wanted: boolean; muted: boolean; waiting: boolean; owner?: Phaser.Scene }>()
@@ -10,7 +11,7 @@ function stateFor(scene: Phaser.Scene) {
 }
 
 export function preloadMusic(scene: Phaser.Scene): void {
-  if (!scene.cache.audio.exists(MENU_THEME)) scene.load.audio(MENU_THEME, '/assets/audio/music/dungle-boy-theme.mp3')
+  if (!scene.cache.audio.exists(MENU_THEME)) scene.load.audio(MENU_THEME, assetUrl('assets/audio/music/dungle-boy-theme.mp3'))
 }
 
 function syncMusic(scene: Phaser.Scene): void {

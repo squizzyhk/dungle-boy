@@ -1,4 +1,5 @@
 import type Phaser from 'phaser'
+import { assetUrl } from '../assetUrl'
 
 export const sfxVolumes = {
   jump: 0.8, doubleJump: 0.75, landing: 0.8, coin: 0.55,
@@ -11,7 +12,7 @@ const hoverTimes = new WeakMap<object, number>()
 export function preloadSfx(scene: Phaser.Scene): void {
   for (const name of Object.keys(sfxVolumes)) {
     const key = `sfx-${name}`
-    if (!scene.cache.audio.exists(key)) scene.load.audio(key, `/assets/audio/${name}.wav`)
+    if (!scene.cache.audio.exists(key)) scene.load.audio(key, assetUrl(`assets/audio/${name}.wav`))
   }
 }
 

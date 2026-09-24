@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { assetUrl } from '../assetUrl'
 import { createMallowRun } from './MallowRun'
 import { preloadLevelKit } from './LevelKit'
 import { CRATE_HEIGHT, CRATE_WIDTH, FINISH_HEIGHT, FINISH_WIDTH, GROUND_HEIGHT, PICKUP_SIZE, PLATFORM_HEIGHT, PLAYER_HEIGHT, PLAYER_WIDTH, SPIKE_HEIGHT, SPIKE_WIDTH } from '../constants'
@@ -26,10 +27,10 @@ function ellipse(c: Paint, x: number, y: number, rx: number, ry: number, fill: s
 
 export function preloadArtwork(scene: Phaser.Scene): void {
   preloadLevelKit(scene)
-  for (const key of ['crystal-aqueduct', 'ember-foundry']) scene.load.image(key, `/assets/${key}.webp`)
-  for (const part of ['body', 'arm']) scene.load.image(`mallow-${part}`, `/assets/mallow-${part}.png`)
-  scene.load.image('orbital-garden', '/assets/orbital-garden.webp')
-  scene.load.spritesheet('mallow', '/assets/mallow-atlas.png', { frameWidth: 192, frameHeight: 192 })
+  for (const key of ['crystal-aqueduct', 'ember-foundry']) scene.load.image(key, assetUrl(`assets/${key}.webp`))
+  for (const part of ['body', 'arm']) scene.load.image(`mallow-${part}`, assetUrl(`assets/mallow-${part}.png`))
+  scene.load.image('orbital-garden', assetUrl('assets/orbital-garden.webp'))
+  scene.load.spritesheet('mallow', assetUrl('assets/mallow-atlas.png'), { frameWidth: 192, frameHeight: 192 })
 }
 
 export function ensureTextures(scene: Phaser.Scene): void {

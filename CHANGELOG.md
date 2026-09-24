@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.1 (2026-09-24)
+
+- Made every runtime image, sprite and audio URL respect Dungle Boy's configured `/dungleboy/` web path.
+- Configured the production build for hosting at `https://doblins.xyz/dungleboy/` without changing Doblins routes or assets.
+- Added focused URL-joining regression coverage for root and subfolder hosting.
+
+Validation: all automated tests and the production build pass. The built HTML, JavaScript, images and audio were checked beneath the `/dungleboy/` prefix before deployment. Live-host verification is recorded separately from repository validation.
+
+Release body: [v0.3.1](docs/releases/v0.3.1.md).
+
 ## 0.3.0 (2026-09-24)
 
 - Added the owner-supplied Dungle Boy theme as looping menu music, with a music toggle, browser-unlock handling and a single shared track. Music pauses during levels; gameplay music remains reserved for later.

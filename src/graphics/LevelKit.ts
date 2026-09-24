@@ -1,4 +1,5 @@
 import type Phaser from 'phaser'
+import { assetUrl } from '../assetUrl'
 
 /** Optional asset library for future levels. Call preloadLevelKit in scene.preload. */
 export const levelKit = [
@@ -17,7 +18,7 @@ export type LevelKitId = typeof levelKit[number]['id']
 export function preloadLevelKit(scene: Phaser.Scene): void {
   for (const asset of levelKit) {
     const key = `level-kit:${asset.id}`
-    if (!scene.textures.exists(key)) scene.load.spritesheet(key, `/assets/level-kit/${asset.category}/${asset.id}.png`, { frameWidth: 256, frameHeight: 256, endFrame: asset.frames - 1 })
+    if (!scene.textures.exists(key)) scene.load.spritesheet(key, assetUrl(`assets/level-kit/${asset.category}/${asset.id}.png`), { frameWidth: 256, frameHeight: 256, endFrame: asset.frames - 1 })
   }
 }
 
