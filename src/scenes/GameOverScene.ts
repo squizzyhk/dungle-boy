@@ -23,7 +23,7 @@ export class GameOverScene extends Phaser.Scene {
 
   create(data: OverData): void {
     this.add.rectangle(GAME_WIDTH / 2, 270, 960, 540, 0x1b1e2b, 0.55)
-    this.add.rectangle(GAME_WIDTH / 2, 294, 480, 368, 0xfff6e4).setStrokeStyle(6, 0x2c3148)
+    this.add.rectangle(GAME_WIDTH / 2, 294, 480, 368, 0x252542).setStrokeStyle(2, 0x92c8ee)
 
     this.add
       .text(GAME_WIDTH / 2, 180, 'Wiped out', {

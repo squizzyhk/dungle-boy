@@ -15,7 +15,8 @@ export class HudScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.add.rectangle(0, 0, 960, 64, 0x2c3148, 0.78).setOrigin(0, 0)
+    this.pips = []
+    this.add.rectangle(0, 0, 960, 64, 0x171d39, 0.78).setOrigin(0, 0)
     this.metaText = this.add.text(20, 18, '', {
       fontFamily: FONT,
       fontSize: '20px',
@@ -26,7 +27,7 @@ export class HudScene extends Phaser.Scene {
       .text(480, 16, '', {
         fontFamily: FONT,
         fontSize: '28px',
-        color: '#ffe14a',
+        color: '#9efbf1',
         fontStyle: 'bold',
       })
       .setOrigin(0.5, 0)
@@ -38,12 +39,12 @@ export class HudScene extends Phaser.Scene {
     this.effectText = this.add.text(20, 74, '', {
       fontFamily: FONT,
       fontSize: '18px',
-      color: '#2c3148',
+      color: '#e6f6ff',
       fontStyle: 'bold',
     })
 
     for (let index = 0; index < 2; index += 1) {
-      this.pips.push(this.add.circle(900 + index * 24, 32, 8, 0xffe14a).setStrokeStyle(3, 0xfff6e4))
+      this.pips.push(this.add.circle(900 + index * 24, 32, 8, 0x9efbf1).setStrokeStyle(3, 0xfff6e4))
     }
 
     const game = this.scene.get(SCENE.game)
@@ -63,7 +64,7 @@ export class HudScene extends Phaser.Scene {
         .join('   '),
     )
     this.pips.forEach((pip, index) => {
-      pip.setFillStyle(index < state.jumpsRemaining ? 0xffe14a : 0x2c3148)
+      pip.setFillStyle(index < state.jumpsRemaining ? 0x9efbf1 : 0x171d39)
     })
   }
 }

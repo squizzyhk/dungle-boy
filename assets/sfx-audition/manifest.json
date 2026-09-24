@@ -1,0 +1,621 @@
+{
+  "date": "2026-09-24",
+  "status": "Candidates only; user selection pending; not integrated",
+  "creator": "Kenney / Kenney Vleugels",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "processing": "Decoded to mono 44.1 kHz PCM16, peak normalized to -9 dBFS for audition; no pitch changes. Reels contain silence between A/B/C. Footstep previews repeat the candidate four times.",
+  "groups": [
+    {
+      "id": "01-jump",
+      "title": "Jump",
+      "trigger": "Player.tick: accepted first jump only",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Pluck",
+          "pack": "interface-sounds",
+          "file": "Audio/pluck_001.ogg",
+          "letter": "A",
+          "preview": "previews/01-jump-A.wav",
+          "source": "interface-sounds/Audio/pluck_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "be97ec4893a02d6eccfb678daa76c83e34cb2583b834ec2593d2641def739fa4",
+          "oneShotSeconds": 0.09952380952380953,
+          "previewSeconds": 0.09952380952380953
+        },
+        {
+          "label": "Phase jump",
+          "pack": "digital-audio",
+          "file": "Audio/phaseJump1.ogg",
+          "letter": "B",
+          "preview": "previews/01-jump-B.wav",
+          "source": "digital-audio/Audio/phaseJump1.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "c60069ed7108678dd6a1306404d168a93cc2575cda37b06add9dd6c4d46352a3",
+          "oneShotSeconds": 0.46730158730158733,
+          "previewSeconds": 0.46730158730158733
+        },
+        {
+          "label": "Slime spring",
+          "pack": "sci-fi-sounds",
+          "file": "Audio/slime_000.ogg",
+          "letter": "C",
+          "preview": "previews/01-jump-C.wav",
+          "source": "sci-fi-sounds/Audio/slime_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/sci-fi-sounds",
+          "sourceLicense": "sci-fi-sounds/License.txt",
+          "sha256": "480ee82b690136ea9db6966a3c3033356b8274752795c4e37afd6b6defcfacff",
+          "oneShotSeconds": 0.5,
+          "previewSeconds": 0.5
+        }
+      ]
+    },
+    {
+      "id": "02-double-jump",
+      "title": "Double jump",
+      "trigger": "Player.tick: accepted double jump; distinct from first jump",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "High rise",
+          "pack": "digital-audio",
+          "file": "Audio/highUp.ogg",
+          "letter": "A",
+          "preview": "previews/02-double-jump-A.wav",
+          "source": "digital-audio/Audio/highUp.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "cbc1c3c7ccf5d7903818144a4c3f5b2ed2385095792f29d8d7c76360ba4fa559",
+          "oneShotSeconds": 0.5456689342403628,
+          "previewSeconds": 0.5456689342403628
+        },
+        {
+          "label": "Phase burst",
+          "pack": "digital-audio",
+          "file": "Audio/phaseJump3.ogg",
+          "letter": "B",
+          "preview": "previews/02-double-jump-B.wav",
+          "source": "digital-audio/Audio/phaseJump3.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "69e25a1b7b0781f57af84eb4424973ec406d34bc48eed8b6964787b2d74093a9",
+          "oneShotSeconds": 0.44117913832199546,
+          "previewSeconds": 0.44117913832199546
+        },
+        {
+          "label": "Maximize",
+          "pack": "interface-sounds",
+          "file": "Audio/maximize_003.ogg",
+          "letter": "C",
+          "preview": "previews/02-double-jump-C.wav",
+          "source": "interface-sounds/Audio/maximize_003.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "df16f25d45189f5d44d6a482ab20d5067350ca8525a9affa1f8ce599e31a20a5",
+          "oneShotSeconds": 0.211859410430839,
+          "previewSeconds": 0.211859410430839
+        }
+      ]
+    },
+    {
+      "id": "03-landing",
+      "title": "Landing",
+      "trigger": "Player.trackGroundContact: air-to-ground transition, volume scaled by fall speed",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Soft impact",
+          "pack": "impact-sounds",
+          "file": "Audio/impactSoft_medium_000.ogg",
+          "letter": "A",
+          "preview": "previews/03-landing-A.wav",
+          "source": "impact-sounds/Audio/impactSoft_medium_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "7d3ba0bb5e60a11b5d3e558c141303dcf494256675fbf753c0d252d2cf0481e3",
+          "oneShotSeconds": 0.11510204081632654,
+          "previewSeconds": 0.11510204081632654
+        },
+        {
+          "label": "Light impact",
+          "pack": "impact-sounds",
+          "file": "Audio/impactGeneric_light_000.ogg",
+          "letter": "B",
+          "preview": "previews/03-landing-B.wav",
+          "source": "impact-sounds/Audio/impactGeneric_light_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "f0e982611e97512fee5f777986b67e8b435434b601f94992ec044f7e89fb5acb",
+          "oneShotSeconds": 0.16108843537414966,
+          "previewSeconds": 0.16108843537414966
+        },
+        {
+          "label": "Light deck impact",
+          "pack": "impact-sounds",
+          "file": "Audio/impactPlate_light_000.ogg",
+          "letter": "C",
+          "preview": "previews/03-landing-C.wav",
+          "source": "impact-sounds/Audio/impactPlate_light_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "6e797cf8a5bfc52d7ed5eb47c227974c1cf2a674954fec5b539cea7d62c7282c",
+          "oneShotSeconds": 0.5424263038548753,
+          "previewSeconds": 0.5424263038548753
+        }
+      ]
+    },
+    {
+      "id": "04-coin",
+      "title": "Coin pickup",
+      "trigger": "GameScene.onPickup: coin only, once per item",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Glass chime",
+          "pack": "interface-sounds",
+          "file": "Audio/glass_001.ogg",
+          "letter": "A",
+          "preview": "previews/04-coin-A.wav",
+          "source": "interface-sounds/Audio/glass_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "183eebee20eb0a532b0b85104d139cbf2673eb66d95c3cc733ac9ea98362e7e8",
+          "oneShotSeconds": 0.2755328798185941,
+          "previewSeconds": 0.2755328798185941
+        },
+        {
+          "label": "Two-tone",
+          "pack": "digital-audio",
+          "file": "Audio/twoTone1.ogg",
+          "letter": "B",
+          "preview": "previews/04-coin-B.wav",
+          "source": "digital-audio/Audio/twoTone1.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "8732f14d6398407a8f1df77b986c2099cfd88f6583e1272cb60497cb2fe8da1d",
+          "oneShotSeconds": 0.7209070294784581,
+          "previewSeconds": 0.7209070294784581
+        },
+        {
+          "label": "Pep blip",
+          "pack": "digital-audio",
+          "file": "Audio/pepSound1.ogg",
+          "letter": "C",
+          "preview": "previews/04-coin-C.wav",
+          "source": "digital-audio/Audio/pepSound1.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "f2f44effce087e47683f0fea05a71002bd8dca78fb10bf93d9f0b38d49f9590e",
+          "oneShotSeconds": 0.519546485260771,
+          "previewSeconds": 0.519546485260771
+        }
+      ]
+    },
+    {
+      "id": "05-boost",
+      "title": "Jump boost acquired",
+      "trigger": "GameScene.onPickup: jump-boost; five-second effect",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Power-up 1",
+          "pack": "digital-audio",
+          "file": "Audio/powerUp1.ogg",
+          "letter": "A",
+          "preview": "previews/05-boost-A.wav",
+          "source": "digital-audio/Audio/powerUp1.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "8c361b624b560c0bc30ea3063b71212bc30caebf425c9df2481c13b25561485c",
+          "oneShotSeconds": 1.2016326530612245,
+          "previewSeconds": 1.2016326530612245
+        },
+        {
+          "label": "Power-up 6",
+          "pack": "digital-audio",
+          "file": "Audio/powerUp6.ogg",
+          "letter": "B",
+          "preview": "previews/05-boost-B.wav",
+          "source": "digital-audio/Audio/powerUp6.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "d1007bc67852cc767fad077a6b7ee016c0eb3d52a2032f1496726d7ab590e22d",
+          "oneShotSeconds": 0.44117913832199546,
+          "previewSeconds": 0.44117913832199546
+        },
+        {
+          "label": "Confirmation",
+          "pack": "interface-sounds",
+          "file": "Audio/confirmation_002.ogg",
+          "letter": "C",
+          "preview": "previews/05-boost-C.wav",
+          "source": "interface-sounds/Audio/confirmation_002.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c",
+          "oneShotSeconds": 0.5390022675736962,
+          "previewSeconds": 0.5390022675736962
+        }
+      ]
+    },
+    {
+      "id": "06-boost-expiry",
+      "title": "Jump boost expires",
+      "trigger": "PowerupController.update: final active jump boost expires; avoid false cues for overlapping boosts",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "High down",
+          "pack": "digital-audio",
+          "file": "Audio/highDown.ogg",
+          "letter": "A",
+          "preview": "previews/06-boost-expiry-A.wav",
+          "source": "digital-audio/Audio/highDown.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "cdbea353b2e435b4f869c7b045af81079c5d5eb81cfbbc805013ccc3a7a0f36a",
+          "oneShotSeconds": 0.519546485260771,
+          "previewSeconds": 0.519546485260771
+        },
+        {
+          "label": "Minimize",
+          "pack": "interface-sounds",
+          "file": "Audio/minimize_003.ogg",
+          "letter": "B",
+          "preview": "previews/06-boost-expiry-B.wav",
+          "source": "interface-sounds/Audio/minimize_003.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "400e1041499de85ec8b5529a35ff36787288175c4696cf2018ecff24a3a3fd29",
+          "oneShotSeconds": 0.211859410430839,
+          "previewSeconds": 0.211859410430839
+        },
+        {
+          "label": "Low down",
+          "pack": "digital-audio",
+          "file": "Audio/lowDown.ogg",
+          "letter": "C",
+          "preview": "previews/06-boost-expiry-C.wav",
+          "source": "digital-audio/Audio/lowDown.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "e0215fcfd8b9d7877f74d5c46b239a13d7db0d25998da97b80404931ef9eef5d",
+          "oneShotSeconds": 0.7807709750566894,
+          "previewSeconds": 0.7807709750566894
+        }
+      ]
+    },
+    {
+      "id": "07-reactor-hit",
+      "title": "Reactor collision",
+      "trigger": "GameScene.onHazard: crate texture; one lethal impact, no duplicate game-over sting",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Soft heavy bump",
+          "pack": "impact-sounds",
+          "file": "Audio/impactSoft_heavy_000.ogg",
+          "letter": "A",
+          "preview": "previews/07-reactor-hit-A.wav",
+          "source": "impact-sounds/Audio/impactSoft_heavy_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1",
+          "oneShotSeconds": 0.5268027210884354,
+          "previewSeconds": 0.5268027210884354
+        },
+        {
+          "label": "Metal bump",
+          "pack": "impact-sounds",
+          "file": "Audio/impactMetal_medium_000.ogg",
+          "letter": "B",
+          "preview": "previews/07-reactor-hit-B.wav",
+          "source": "impact-sounds/Audio/impactMetal_medium_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "a96f879fec0864a8938e0c745b6996a6c5679c16a234ce31a01cc995e8401003",
+          "oneShotSeconds": 0.26886621315192744,
+          "previewSeconds": 0.26886621315192744
+        },
+        {
+          "label": "Punch impact",
+          "pack": "impact-sounds",
+          "file": "Audio/impactPunch_medium_000.ogg",
+          "letter": "C",
+          "preview": "previews/07-reactor-hit-C.wav",
+          "source": "impact-sounds/Audio/impactPunch_medium_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+          "oneShotSeconds": 0.43054421768707485,
+          "previewSeconds": 0.43054421768707485
+        }
+      ]
+    },
+    {
+      "id": "08-plasma-hit",
+      "title": "Plasma collision",
+      "trigger": "GameScene.onHazard: spike texture; one lethal zap",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Zap",
+          "pack": "digital-audio",
+          "file": "Audio/zap1.ogg",
+          "letter": "A",
+          "preview": "previews/08-plasma-hit-A.wav",
+          "source": "digital-audio/Audio/zap1.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "4e4bf11c671a4be0723022a7177f8e122329fa32a0c59555581f4193ed111585",
+          "oneShotSeconds": 1.0187755102040816,
+          "previewSeconds": 1.0187755102040816
+        },
+        {
+          "label": "Force field",
+          "pack": "sci-fi-sounds",
+          "file": "Audio/forceField_000.ogg",
+          "letter": "B",
+          "preview": "previews/08-plasma-hit-B.wav",
+          "source": "sci-fi-sounds/Audio/forceField_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/sci-fi-sounds",
+          "sourceLicense": "sci-fi-sounds/License.txt",
+          "sha256": "c2916f2a062c8ddd1aca2826d134fe90847037db31342726ffb0f9097afe339c",
+          "oneShotSeconds": 0.9540136054421768,
+          "previewSeconds": 0.9540136054421768
+        },
+        {
+          "label": "Alternate zap",
+          "pack": "digital-audio",
+          "file": "Audio/zap2.ogg",
+          "letter": "C",
+          "preview": "previews/08-plasma-hit-C.wav",
+          "source": "digital-audio/Audio/zap2.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "169cf3876647bae0a28a7eb3fc5b5bd573ab9efae7b56b64a8700ff9bafb3494",
+          "oneShotSeconds": 1.2277551020408164,
+          "previewSeconds": 1.2277551020408164
+        }
+      ]
+    },
+    {
+      "id": "09-fall",
+      "title": "Fall into a gap",
+      "trigger": "GameScene.fail: distinguish KILL_Y from hazard death; do not play for a recoverable descent",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Phaser descent",
+          "pack": "digital-audio",
+          "file": "Audio/phaserDown1.ogg",
+          "letter": "A",
+          "preview": "previews/09-fall-A.wav",
+          "source": "digital-audio/Audio/phaserDown1.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "d2d046cd0247045f8819905fc9719a7237ccbd590b3128ce58a61a81f50d208b",
+          "oneShotSeconds": 0.46730158730158733,
+          "previewSeconds": 0.46730158730158733
+        },
+        {
+          "label": "Three-tone descent",
+          "pack": "digital-audio",
+          "file": "Audio/zapThreeToneDown.ogg",
+          "letter": "B",
+          "preview": "previews/09-fall-B.wav",
+          "source": "digital-audio/Audio/zapThreeToneDown.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "272e60bc62a1685f990fa50d163c3cb7f85073c1c3f89e3c3409e7ec938703c5",
+          "oneShotSeconds": 1.3322448979591837,
+          "previewSeconds": 1.3322448979591837
+        },
+        {
+          "label": "Low tumble",
+          "pack": "digital-audio",
+          "file": "Audio/lowRandom.ogg",
+          "letter": "C",
+          "preview": "previews/09-fall-C.wav",
+          "source": "digital-audio/Audio/lowRandom.ogg",
+          "sourceUrl": "https://kenney.nl/assets/digital-audio",
+          "sourceLicense": "digital-audio/License.txt",
+          "sha256": "ceefeeeb6982838d78ac9059a845ca614b3bd94580a9a9127fd5834d6206f739",
+          "oneShotSeconds": 0.5456689342403628,
+          "previewSeconds": 0.5456689342403628
+        }
+      ]
+    },
+    {
+      "id": "10-finish",
+      "title": "Finish celebration",
+      "trigger": "GameScene.win / FinishGate.celebrate: once at crossing; audio survives results overlay",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Pizzicato jingle",
+          "pack": "music-jingles",
+          "file": "Audio/Pizzicato jingles/jingles_PIZZI00.ogg",
+          "letter": "A",
+          "preview": "previews/10-finish-A.wav",
+          "source": "music-jingles/Audio/Pizzicato jingles/jingles_PIZZI00.ogg",
+          "sourceUrl": "https://kenney.nl/assets/music-jingles",
+          "sourceLicense": "music-jingles/License.txt",
+          "sha256": "b442ade3308a2bbda4b8c572c86f9f1071c7bdbcfb1e6f915d35c605b61bd475",
+          "oneShotSeconds": 0.494172335600907,
+          "previewSeconds": 0.494172335600907
+        },
+        {
+          "label": "Steel jingle",
+          "pack": "music-jingles",
+          "file": "Audio/Steel jingles/jingles_STEEL00.ogg",
+          "letter": "B",
+          "preview": "previews/10-finish-B.wav",
+          "source": "music-jingles/Audio/Steel jingles/jingles_STEEL00.ogg",
+          "sourceUrl": "https://kenney.nl/assets/music-jingles",
+          "sourceLicense": "music-jingles/License.txt",
+          "sha256": "8799eb726d784ae0aa1a9df80648a873ac60015bc00aea12c8e2dd1431a2bd7d",
+          "oneShotSeconds": 0.9328117913832199,
+          "previewSeconds": 0.9328117913832199
+        },
+        {
+          "label": "Compact confirmation",
+          "pack": "interface-sounds",
+          "file": "Audio/confirmation_004.ogg",
+          "letter": "C",
+          "preview": "previews/10-finish-C.wav",
+          "source": "interface-sounds/Audio/confirmation_004.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+          "oneShotSeconds": 0.4904081632653061,
+          "previewSeconds": 0.4904081632653061
+        }
+      ]
+    },
+    {
+      "id": "11-buttons",
+      "title": "Button press",
+      "trigger": "addButton pointerdown: level select, retry, next, menu; shared sound",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Click",
+          "pack": "interface-sounds",
+          "file": "Audio/click_001.ogg",
+          "letter": "A",
+          "preview": "previews/11-buttons-A.wav",
+          "source": "interface-sounds/Audio/click_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+          "oneShotSeconds": 0.09712018140589569,
+          "previewSeconds": 0.09712018140589569
+        },
+        {
+          "label": "Select",
+          "pack": "interface-sounds",
+          "file": "Audio/select_002.ogg",
+          "letter": "B",
+          "preview": "previews/11-buttons-B.wav",
+          "source": "interface-sounds/Audio/select_002.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "4cc6ac5341b9b2c86fef80c347de028e9ab9f2e037586ac7d9fa59a403a1c012",
+          "oneShotSeconds": 0.04038548752834467,
+          "previewSeconds": 0.04038548752834467
+        },
+        {
+          "label": "Switch",
+          "pack": "interface-sounds",
+          "file": "Audio/switch_003.ogg",
+          "letter": "C",
+          "preview": "previews/11-buttons-C.wav",
+          "source": "interface-sounds/Audio/switch_003.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "ca12dd32103f401481d5aff56d5e9831174e99bb577139c09b07d046eb8b837e",
+          "oneShotSeconds": 0.5,
+          "previewSeconds": 0.5
+        }
+      ]
+    },
+    {
+      "id": "12-hover",
+      "title": "Button hover (optional)",
+      "trigger": "addButton pointerover: mouse only, quiet, rate-limited",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Tick",
+          "pack": "interface-sounds",
+          "file": "Audio/tick_001.ogg",
+          "letter": "A",
+          "preview": "previews/12-hover-A.wav",
+          "source": "interface-sounds/Audio/tick_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "9d057b918024c787bbe6c00beed13a7ef72a3fa0c259add3cef36582792f4230",
+          "oneShotSeconds": 0.04498866213151927,
+          "previewSeconds": 0.04498866213151927
+        },
+        {
+          "label": "Scroll",
+          "pack": "interface-sounds",
+          "file": "Audio/scroll_001.ogg",
+          "letter": "B",
+          "preview": "previews/12-hover-B.wav",
+          "source": "interface-sounds/Audio/scroll_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "320c6aafb2c7a503eae508dc443b72d7f7c0a317bfd16813157ed400cd04cf16",
+          "oneShotSeconds": 1.0000226757369615,
+          "previewSeconds": 1.0000226757369615
+        },
+        {
+          "label": "Select",
+          "pack": "interface-sounds",
+          "file": "Audio/select_001.ogg",
+          "letter": "C",
+          "preview": "previews/12-hover-C.wav",
+          "source": "interface-sounds/Audio/select_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/interface-sounds",
+          "sourceLicense": "interface-sounds/License.txt",
+          "sha256": "aec0c31ea934a35936ae0d2ab8fac8123c93aa5647f935853a58dbaf90278b7a",
+          "oneShotSeconds": 0.04038548752834467,
+          "previewSeconds": 0.04038548752834467
+        }
+      ]
+    },
+    {
+      "id": "13-footsteps",
+      "title": "Running footsteps (optional)",
+      "trigger": "Player / RunStride: foot contact timing, grounded only; previews repeat four steps",
+      "slotSeconds": 4,
+      "options": [
+        {
+          "label": "Padded steps",
+          "pack": "impact-sounds",
+          "file": "Audio/footstep_carpet_000.ogg",
+          "letter": "A",
+          "preview": "previews/13-footsteps-A.wav",
+          "source": "impact-sounds/Audio/footstep_carpet_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "b9524658b52a99a20590f8feefc103088637fd13ea8ec35811aee785e1f2f330",
+          "oneShotSeconds": 0.16689342403628118,
+          "previewSeconds": 1.1268934240362811
+        },
+        {
+          "label": "Deck steps",
+          "pack": "impact-sounds",
+          "file": "Audio/footstep_concrete_000.ogg",
+          "letter": "B",
+          "preview": "previews/13-footsteps-B.wav",
+          "source": "impact-sounds/Audio/footstep_concrete_000.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe",
+          "oneShotSeconds": 0.10301587301587302,
+          "previewSeconds": 1.063015873015873
+        },
+        {
+          "label": "Soft body taps",
+          "pack": "impact-sounds",
+          "file": "Audio/impactSoft_medium_001.ogg",
+          "letter": "C",
+          "preview": "previews/13-footsteps-C.wav",
+          "source": "impact-sounds/Audio/impactSoft_medium_001.ogg",
+          "sourceUrl": "https://kenney.nl/assets/impact-sounds",
+          "sourceLicense": "impact-sounds/License.txt",
+          "sha256": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf",
+          "oneShotSeconds": 0.18038548752834468,
+          "previewSeconds": 1.1403854875283446
+        }
+      ]
+    }
+  ]
+}

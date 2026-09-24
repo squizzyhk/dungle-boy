@@ -25,7 +25,7 @@ export class LevelCompleteScene extends Phaser.Scene {
 
   create(data: CompleteData): void {
     this.add.rectangle(GAME_WIDTH / 2, 270, 960, 540, 0x1b1e2b, 0.55)
-    this.add.rectangle(GAME_WIDTH / 2, 289, 480, 378, 0xfff6e4).setStrokeStyle(6, 0x2c3148)
+    this.add.rectangle(GAME_WIDTH / 2, 289, 480, 378, 0x252542).setStrokeStyle(2, 0x92c8ee)
 
     this.add
       .text(GAME_WIDTH / 2, 170, 'Level clear', {

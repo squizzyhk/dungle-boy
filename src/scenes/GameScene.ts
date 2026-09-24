@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
+import { playSfx, type Sfx } from '../audio/sfx'
 import {
   DESPAWN_MARGIN,
   GAME_HEIGHT,
-  GAME_WIDTH,
   KILL_Y,
   LOOKAHEAD,
   PLAYER_START_X,
@@ -13,6 +13,8 @@ import { getItem } from '../data/items'
 import { getLevel, levels, worldWidth } from '../data/levels'
 import { Player } from '../entities/Player'
 import { ensureTextures } from '../graphics/textures'
+import { SpaceBackdrop } from '../graphics/SpaceBackdrop'
+import { FinishGate } from '../graphics/FinishGate'
 import { PowerupController } from '../items/PowerupController'
 import { runSpeed } from '../run/speed'
 import type { HudState } from '../types'
@@ -32,8 +34,7 @@ export class GameScene extends Phaser.Scene {
   private player!: Player
   private powerups = new PowerupController()
   private spawner!: WorldSpawner
-  private clouds!: Phaser.GameObjects.TileSprite
-  private hills!: Phaser.GameObjects.TileSprite
+  private backdrop!: SpaceBackdrop
 
   constructor() {
     super(SCENE.game)
@@ -53,18 +54,7 @@ export class GameScene extends Phaser.Scene {
   create(): void {
     ensureTextures(this)
     const level = getLevel(this.levelIndex)
-    this.cameras.main.setBackgroundColor('#87d6ff')
-    this.clouds = this.add
-      .tileSprite(0, 24, GAME_WIDTH, 100, 'clouds')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setDepth(0)
-    this.add.circle(840, 78, 34, 0xfff1a8).setScrollFactor(0).setDepth(0)
-    this.hills = this.add
-      .tileSprite(0, 390, GAME_WIDTH, 110, 'hills')
-      .setOrigin(0, 0)
-      .setScrollFactor(0)
-      .setDepth(1)
+    this.backdrop = new SpaceBackdrop(this)
 
     const platforms = this.physics.add.staticGroup()
     const hazards = this.physics.add.staticGroup()
@@ -93,13 +83,14 @@ export class GameScene extends Phaser.Scene {
   }
 
   update(_time: number, delta: number): void {
-    this.clouds.tilePositionX = this.cameras.main.scrollX * 0.12
-    this.hills.tilePositionX = this.cameras.main.scrollX * 0.38
+    this.backdrop.update(_time, this.cameras.main.scrollX)
     if (this.state !== 'playing') return
 
     const dt = Math.min(delta, 50)
     this.elapsedMs += dt
+    const boosted = this.powerups.modifiers.jumpMultiplier > 1
     this.powerups.update(dt)
+    if (boosted && this.powerups.modifiers.jumpMultiplier <= 1) playSfx(this, 'boostExpiry')
 
     const level = getLevel(this.levelIndex)
     const speed = runSpeed(
@@ -157,7 +148,7 @@ export class GameScene extends Phaser.Scene {
       this.player.flash()
       return
     }
-    this.fail()
+    this.fail(hazard.texture.key === 'spike' ? 'spike' : 'reactor')
   }
 
   private onPickup: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback = (_player, pickup) => {
@@ -165,6 +156,7 @@ export class GameScene extends Phaser.Scene {
     if (!(pickup instanceof Phaser.GameObjects.Sprite)) return
     if (pickup.getData('taken')) return
     const itemId = pickup.getData('itemId') as string
+    playSfx(this, itemId === 'coin' ? 'coin' : 'boost')
     pickup.setData('taken', true)
     pickup.destroy()
     this.powerups.collect(getItem(itemId), (amount) => {
@@ -172,13 +164,19 @@ export class GameScene extends Phaser.Scene {
     })
   }
 
-  private onFinish: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback = () => {
+  private onFinish: Phaser.Types.Physics.Arcade.ArcadePhysicsCallback = (_player, marker) => {
+    if (this.state !== 'playing') return
+    if (marker instanceof Phaser.GameObjects.Sprite) {
+      const gate = marker.getData('finishGate') as FinishGate | undefined
+      gate?.celebrate()
+    }
     this.win()
   }
 
-  private fail(): void {
+  private fail(sound: Sfx = 'fall'): void {
     if (this.state !== 'playing') return
     this.state = 'dead'
+    playSfx(this, sound)
     this.player.tumble()
     this.time.delayedCall(460, () => {
       this.scene.stop(SCENE.hud)
@@ -190,8 +188,9 @@ export class GameScene extends Phaser.Scene {
   private win(): void {
     if (this.state !== 'playing') return
     this.state = 'complete'
+    playSfx(this, 'finish')
     this.player.halt()
-    this.time.delayedCall(280, () => {
+    this.time.delayedCall(1100, () => {
       this.scene.stop(SCENE.hud)
       this.scene.launch(SCENE.complete, {
         score: this.score,

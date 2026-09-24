@@ -1,0 +1,45 @@
+{
+  "landing": [
+    {
+      "id": "L1",
+      "name": "pillow",
+      "file": "pillow-bed-hq.mp3",
+      "author": "krnash",
+      "source": "https://freesound.org/people/krnash/sounds/389799/",
+      "download": "https://cdn.freesound.org/previews/389/389799_6136319-hq.mp3",
+      "filter": "atrim=start=0.63:end=1.23,asetpts=PTS-STARTPTS,afade=t=out:st=0.5:d=0.1",
+      "license": "CC0-1.0",
+      "sourceFormat": "Freesound publicly available high-quality MP3 preview; original WAV not downloaded",
+      "sha256": "ad103c96f93235b013ddd087ee6f7911e6674ee1b6b4d33ffcdbac9580119d2c"
+    },
+    {
+      "id": "L2",
+      "name": "pillow-thud",
+      "file": "falling-thud-hq.mp3",
+      "author": "septalium1",
+      "source": "https://freesound.org/people/septalium1/sounds/584293/",
+      "download": "https://cdn.freesound.org/previews/584/584293_13171815-hq.mp3",
+      "filter": "atrim=start=0.21:end=1.01,asetpts=PTS-STARTPTS,afade=t=out:st=0.7:d=0.1",
+      "license": "CC0-1.0",
+      "sourceFormat": "Freesound publicly available high-quality MP3 preview; original WAV not downloaded",
+      "sha256": "8eec6fafa8a61cc8894860472767fce46cb7e5c5e855c6df5f0e68410f1f22ad"
+    },
+    {
+      "id": "L3",
+      "name": "deep-pillow",
+      "file": "pillow-bed-hq.mp3",
+      "author": "krnash",
+      "source": "https://freesound.org/people/krnash/sounds/389799/",
+      "download": "https://cdn.freesound.org/previews/389/389799_6136319-hq.mp3",
+      "filter": "atrim=start=1.65:end=2.25,asetpts=PTS-STARTPTS,aresample=44100,asetrate=35280,aresample=44100,lowpass=f=1600,afade=t=out:st=0.6:d=0.15",
+      "license": "CC0-1.0",
+      "sourceFormat": "Freesound publicly available high-quality MP3 preview; original WAV not downloaded",
+      "sha256": "ad103c96f93235b013ddd087ee6f7911e6674ee1b6b4d33ffcdbac9580119d2c"
+    }
+  ],
+  "jump": {
+    "J1": "Original jump A and B, simultaneous, equal pre-mix peaks",
+    "J2": "Original jump A immediately followed by B at 99.524 ms; no gap"
+  },
+  "processing": "All previews peak-normalized to -9 dBFS, mono PCM16 44.1 kHz, with 150 ms leading and 400 ms trailing chat-player padding. No original synthesized sounds."
+}

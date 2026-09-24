@@ -1,3 +1,3 @@
 export const FONT = 'Trebuchet MS, Verdana, sans-serif'
-export const INK = '#2c3148'
-export const CREAM = '#fff6e4'
+export const INK = '#f4edff'
+export const CREAM = '#e6f6ff'

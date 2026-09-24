@@ -6,6 +6,7 @@ import {
   PICKUP_SIZE,
 } from '../constants'
 import type { Segment, SegmentSource } from '../types'
+import { FinishGate } from '../graphics/FinishGate'
 
 type Piece = Phaser.GameObjects.Sprite | Phaser.GameObjects.TileSprite
 
@@ -64,16 +65,23 @@ export class WorldSpawner {
           segment.itemId,
           5,
         ).setData('itemId', segment.itemId)
-      case 'finish':
-        return this.addSprite(
+      case 'finish': {
+        // Only the mast is a finish trigger; its flag and beacon are decorative.
+        const marker = this.addSprite(
           this.finish,
-          segment.x,
+          segment.x + 10,
           GROUND_Y - FINISH_HEIGHT,
-          FINISH_WIDTH,
+          Math.min(20, FINISH_WIDTH),
           FINISH_HEIGHT,
           'finish',
           6,
         )
+        marker.setVisible(false)
+        const gate = new FinishGate(this.scene, segment.x, GROUND_Y)
+        marker.setData('finishGate', gate)
+        marker.once(Phaser.GameObjects.Events.DESTROY, () => gate.destroy())
+        return marker
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import { playSfx } from '../audio/sfx'
 import { FONT, INK } from './theme'
 
 export function addButton(
@@ -9,8 +10,8 @@ export function addButton(
   onClick: () => void,
 ): void {
   const bg = scene.add
-    .rectangle(x, y, 340, 58, 0xffd15c)
-    .setStrokeStyle(5, 0x2c3148)
+    .rectangle(x, y, 340, 58, 0x34345d)
+    .setStrokeStyle(2, 0x92c8ee)
     .setInteractive({ useHandCursor: true })
 
   scene.add
@@ -22,7 +23,10 @@ export function addButton(
     })
     .setOrigin(0.5)
 
-  bg.on('pointerover', () => bg.setFillStyle(0xffe7a0))
-  bg.on('pointerout', () => bg.setFillStyle(0xffd15c))
-  bg.on('pointerdown', onClick)
+  bg.on('pointerover', (pointer: Phaser.Input.Pointer) => {
+    bg.setFillStyle(0x60518c)
+    if (!pointer.wasTouch) playSfx(scene, 'hover')
+  })
+  bg.on('pointerout', () => bg.setFillStyle(0x34345d))
+  bg.on('pointerdown', () => { playSfx(scene, 'button'); onClick() })
 }
