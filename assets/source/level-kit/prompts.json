@@ -1,0 +1,38 @@
+{
+  "tool": "Built-in image_gen",
+  "common": "Use case: stylized-concept. Production reusable 2D side-scrolling game asset for Dungle Boy orbital garden. Polished hand-painted cartoon illustration, softly dimensional gouache shading, crisp readable silhouettes, lavender ceramic-metal, dark indigo shadows, mint lights and peach accents; dreamy friendly sci-fi matching a cream marshmallow hero against lavender planets and teal aurora. REAL transparent alpha background, not a checkerboard drawing. No text, no labels, no scenery, no floor, no border. Generous empty padding all sides. ",
+  "assets": [
+    [
+      "reactor-crate",
+      "One static obstacle: squat rounded sealed reactor cargo crate, lavender ceramic-metal frame, dark indigo inset, peach glowing circular reactor core, small mint fasteners. One isolated object centered, front view with very slight visible top, no ground shadow. Single image."
+    ],
+    [
+      "crystal-cluster",
+      "One static obstacle: cluster of three dangerous pointed peach-pink translucent crystals growing from a low lavender mechanical socket, large central crystal and two smaller side crystals, readable triangular silhouette. One isolated object centered, front view, no ground shadow. Single image."
+    ],
+    [
+      "retracting-spikes",
+      "Animation sprite sheet of ONE retracting crystal spike trap, EXACT 4 columns by 2 rows, 8 equal square cells, row-major frames. Same low lavender metal base locked at exactly same position and size in every cell, bottom center. Three peach-pink crystal spikes retract into base. Frames 0 fully retracted, 1 small tips, 2 half extended, 3 fully extended, 4 fully extended glowing, 5 fully extended, 6 half extended, 7 small tips. Each complete trap contained inside own cell. No grid lines."
+    ],
+    [
+      "plasma-rotor",
+      "Animation sprite sheet of ONE rotating orbital hazard, EXACT 4 columns by 2 rows, 8 equal square cells, row-major frames. Circular lavender mechanical hub with peach luminous core and THREE curved dark lavender blades with peach cutting edges spaced at 120 degrees. Front orthographic view, centered pivot fixed in every cell, identical size. Rotate blade assembly clockwise by 15 degrees per frame: 0,15,30,45,60,75,90,105 degrees, seamless repeating threefold loop. Crisp blades, no motion blur. Each complete rotor inside own cell. No grid lines."
+    ],
+    [
+      "boost-pad",
+      "Animation sprite sheet of ONE speed boost pad, EXACT 4 columns by 2 rows, 8 equal square cells, row-major frames. A low wide rounded lavender metal runway plate with luminous MINT right-facing double chevrons on its front-facing top surface, tiny peach side details. Fixed base position and identical silhouette in all frames. Only mint chevron illumination pulses smoothly dim-bright-dim across 8 frames, no movement of base, no beams. Side-scrolling view slight visible top. Each complete pad inside own cell. No grid lines."
+    ],
+    [
+      "jump-orb",
+      "Animation sprite sheet of ONE jump powerup orb, EXACT 4 columns by 2 rows, 8 equal square cells, row-major frames. Floating luminous mint glass sphere with lavender metallic thin rim and large simple ivory UP ARROW symbol inside, softly hand painted. Identical centered position and size each frame, pulse inner mint illumination dim-bright-dim over 8 frames. Symbol stays perfectly fixed and legible. Contained soft glow with large transparent gutters, no orbiting particles. Each full orb inside own cell. No grid lines."
+    ],
+    [
+      "shield-orb",
+      "Animation sprite sheet of ONE shield powerup orb, EXACT 4 columns by 2 rows, 8 equal square cells, row-major frames. Floating luminous periwinkle glass sphere with lavender metallic thin rim and large simple ivory SHIELD symbol inside, softly hand painted. Identical centered position and size each frame, pulse inner periwinkle illumination dim-bright-dim over 8 frames. Symbol stays perfectly fixed and legible. Contained soft glow with large transparent gutters, no orbiting particles. Each full orb inside own cell. No grid lines."
+    ],
+    [
+      "magnet-orb",
+      "Animation sprite sheet of ONE magnet powerup orb, EXACT 4 columns by 2 rows, 8 equal square cells, row-major frames. Floating luminous peach glass sphere with lavender metallic thin rim and large simple ivory horseshoe MAGNET symbol inside, softly hand painted. Identical centered position and size each frame, pulse inner peach illumination dim-bright-dim over 8 frames. Symbol stays perfectly fixed and legible. Contained soft glow with large transparent gutters, no orbiting particles. Each full orb inside own cell. No grid lines."
+    ]
+  ]
+}

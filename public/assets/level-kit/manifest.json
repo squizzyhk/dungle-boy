@@ -1,0 +1,466 @@
+{
+  "version": 1,
+  "frameOrder": "left-to-right, top-to-bottom",
+  "assets": [
+    {
+      "id": "reactor-crate",
+      "category": "obstacles",
+      "url": "/assets/level-kit/obstacles/reactor-crate.png",
+      "icon": "/assets/level-kit/obstacles/reactor-crate-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 1,
+      "rows": 1,
+      "frameCount": 1,
+      "fps": 0,
+      "repeat": 0,
+      "origin": {
+        "x": 0.5,
+        "y": 0.9375
+      },
+      "source": "assets/source/level-kit/reactor-crate.png",
+      "sourceRegions": [
+        {
+          "left": 383,
+          "top": 195,
+          "width": 773,
+          "height": 652
+        }
+      ]
+    },
+    {
+      "id": "crystal-cluster",
+      "category": "obstacles",
+      "url": "/assets/level-kit/obstacles/crystal-cluster.png",
+      "icon": "/assets/level-kit/obstacles/crystal-cluster-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 1,
+      "rows": 1,
+      "frameCount": 1,
+      "fps": 0,
+      "repeat": 0,
+      "origin": {
+        "x": 0.5,
+        "y": 0.9375
+      },
+      "source": "assets/source/level-kit/crystal-cluster.png",
+      "sourceRegions": [
+        {
+          "left": 293,
+          "top": 100,
+          "width": 738,
+          "height": 950
+        }
+      ]
+    },
+    {
+      "id": "retracting-spikes",
+      "category": "obstacles",
+      "url": "/assets/level-kit/obstacles/retracting-spikes.png",
+      "icon": "/assets/level-kit/obstacles/retracting-spikes-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 2,
+      "frameCount": 8,
+      "fps": 8,
+      "repeat": -1,
+      "origin": {
+        "x": 0.5,
+        "y": 0.9375
+      },
+      "source": "assets/source/level-kit/retracting-spikes.png",
+      "sourceRegions": [
+        {
+          "left": 50,
+          "top": 257,
+          "width": 347,
+          "height": 143
+        },
+        {
+          "left": 493,
+          "top": 237,
+          "width": 346,
+          "height": 163
+        },
+        {
+          "left": 936,
+          "top": 168,
+          "width": 346,
+          "height": 232
+        },
+        {
+          "left": 1379,
+          "top": 78,
+          "width": 346,
+          "height": 322
+        },
+        {
+          "left": 50,
+          "top": 485,
+          "width": 347,
+          "height": 355
+        },
+        {
+          "left": 493,
+          "top": 515,
+          "width": 346,
+          "height": 325
+        },
+        {
+          "left": 936,
+          "top": 608,
+          "width": 346,
+          "height": 232
+        },
+        {
+          "left": 1379,
+          "top": 676,
+          "width": 346,
+          "height": 164
+        }
+      ]
+    },
+    {
+      "id": "plasma-rotor",
+      "category": "obstacles",
+      "url": "/assets/level-kit/obstacles/plasma-rotor.png",
+      "icon": "/assets/level-kit/obstacles/plasma-rotor-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 2,
+      "frameCount": 8,
+      "fps": 12,
+      "repeat": -1,
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": "assets/source/level-kit/plasma-rotor.png",
+      "sourceRegions": [
+        {
+          "left": 39,
+          "top": 19,
+          "width": 366,
+          "height": 351
+        },
+        {
+          "left": 460,
+          "top": 26,
+          "width": 364,
+          "height": 374
+        },
+        {
+          "left": 908,
+          "top": 53,
+          "width": 353,
+          "height": 374
+        },
+        {
+          "left": 1368,
+          "top": 91,
+          "width": 386,
+          "height": 345
+        },
+        {
+          "left": 60,
+          "top": 497,
+          "width": 379,
+          "height": 362
+        },
+        {
+          "left": 516,
+          "top": 474,
+          "width": 367,
+          "height": 373
+        },
+        {
+          "left": 973,
+          "top": 454,
+          "width": 353,
+          "height": 374
+        },
+        {
+          "left": 1393,
+          "top": 457,
+          "width": 355,
+          "height": 361
+        }
+      ]
+    },
+    {
+      "id": "boost-pad",
+      "category": "pads",
+      "url": "/assets/level-kit/pads/boost-pad.png",
+      "icon": "/assets/level-kit/pads/boost-pad-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 2,
+      "frameCount": 8,
+      "fps": 10,
+      "repeat": -1,
+      "origin": {
+        "x": 0.5,
+        "y": 0.9375
+      },
+      "source": "assets/source/level-kit/boost-pad.png",
+      "sourceRegions": [
+        {
+          "left": 22,
+          "top": 222,
+          "width": 401,
+          "height": 122
+        },
+        {
+          "left": 466,
+          "top": 222,
+          "width": 402,
+          "height": 122
+        },
+        {
+          "left": 909,
+          "top": 223,
+          "width": 401,
+          "height": 121
+        },
+        {
+          "left": 1353,
+          "top": 222,
+          "width": 402,
+          "height": 124
+        },
+        {
+          "left": 23,
+          "top": 663,
+          "width": 400,
+          "height": 125
+        },
+        {
+          "left": 466,
+          "top": 663,
+          "width": 401,
+          "height": 125
+        },
+        {
+          "left": 910,
+          "top": 663,
+          "width": 400,
+          "height": 125
+        },
+        {
+          "left": 1353,
+          "top": 662,
+          "width": 400,
+          "height": 126
+        }
+      ]
+    },
+    {
+      "id": "jump-orb",
+      "category": "powerups",
+      "url": "/assets/level-kit/powerups/jump-orb.png",
+      "icon": "/assets/level-kit/powerups/jump-orb-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 2,
+      "frameCount": 8,
+      "fps": 10,
+      "repeat": -1,
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": "assets/source/level-kit/jump-orb.png",
+      "sourceRegions": [
+        {
+          "left": 91,
+          "top": 66,
+          "width": 352,
+          "height": 365
+        },
+        {
+          "left": 443,
+          "top": 66,
+          "width": 422,
+          "height": 366
+        },
+        {
+          "left": 904,
+          "top": 64,
+          "width": 425,
+          "height": 370
+        },
+        {
+          "left": 1329,
+          "top": 59,
+          "width": 362,
+          "height": 377
+        },
+        {
+          "left": 83,
+          "top": 452,
+          "width": 360,
+          "height": 374
+        },
+        {
+          "left": 443,
+          "top": 458,
+          "width": 424,
+          "height": 364
+        },
+        {
+          "left": 907,
+          "top": 460,
+          "width": 422,
+          "height": 360
+        },
+        {
+          "left": 1329,
+          "top": 456,
+          "width": 351,
+          "height": 363
+        }
+      ]
+    },
+    {
+      "id": "shield-orb",
+      "category": "powerups",
+      "url": "/assets/level-kit/powerups/shield-orb.png",
+      "icon": "/assets/level-kit/powerups/shield-orb-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 2,
+      "frameCount": 8,
+      "fps": 10,
+      "repeat": -1,
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": "assets/source/level-kit/shield-orb.png",
+      "sourceRegions": [
+        {
+          "left": 64,
+          "top": 81,
+          "width": 322,
+          "height": 313
+        },
+        {
+          "left": 505,
+          "top": 81,
+          "width": 322,
+          "height": 310
+        },
+        {
+          "left": 948,
+          "top": 81,
+          "width": 324,
+          "height": 311
+        },
+        {
+          "left": 1392,
+          "top": 81,
+          "width": 319,
+          "height": 309
+        },
+        {
+          "left": 62,
+          "top": 514,
+          "width": 325,
+          "height": 314
+        },
+        {
+          "left": 505,
+          "top": 513,
+          "width": 324,
+          "height": 312
+        },
+        {
+          "left": 948,
+          "top": 515,
+          "width": 324,
+          "height": 310
+        },
+        {
+          "left": 1392,
+          "top": 515,
+          "width": 320,
+          "height": 309
+        }
+      ]
+    },
+    {
+      "id": "magnet-orb",
+      "category": "powerups",
+      "url": "/assets/level-kit/powerups/magnet-orb.png",
+      "icon": "/assets/level-kit/powerups/magnet-orb-icon.png",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 2,
+      "frameCount": 8,
+      "fps": 10,
+      "repeat": -1,
+      "origin": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "source": "assets/source/level-kit/magnet-orb.png",
+      "sourceRegions": [
+        {
+          "left": 114,
+          "top": 97,
+          "width": 276,
+          "height": 277
+        },
+        {
+          "left": 535,
+          "top": 97,
+          "width": 278,
+          "height": 277
+        },
+        {
+          "left": 912,
+          "top": 52,
+          "width": 417,
+          "height": 364
+        },
+        {
+          "left": 1329,
+          "top": 37,
+          "width": 391,
+          "height": 398
+        },
+        {
+          "left": 55,
+          "top": 451,
+          "width": 388,
+          "height": 388
+        },
+        {
+          "left": 443,
+          "top": 454,
+          "width": 420,
+          "height": 375
+        },
+        {
+          "left": 960,
+          "top": 502,
+          "width": 279,
+          "height": 278
+        },
+        {
+          "left": 1383,
+          "top": 502,
+          "width": 278,
+          "height": 278
+        }
+      ]
+    }
+  ]
+}
