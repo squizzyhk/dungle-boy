@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 (2026-10-04)
+
+- Added the unlockable cosmetics system with four categories: hats, shirts, shoes and full outfits, plus an empty catalog ready for the first batch of items.
+- Added unlock tracking, per-category equipping and slot clearing. Equipped full outfits cover the hat, shirt and shoes slots without clearing them, so removing the outfit restores the individual pieces.
+- Added the project's first persistence layer: cosmetics state saves to localStorage under a versioned key and reloads across sessions, with defensive parsing that falls back to a fresh save on corrupt or incompatible data and keeps the session working when storage is unavailable or rejects writes.
+- Added a shared controller accessor for scenes to use when the wardrobe UI and unlock triggers arrive.
+- Added regression coverage for unlock lifecycle, equip gating on unlocks, outfit override and restore, cross-instance persistence, corrupt save recovery and missing or rejecting storage.
+
+Validation: all 62 automated tests and the production build pass. No cosmetic items, wardrobe UI or scene wiring are included yet; nothing in the game calls the system. The existing large-bundle warning remains.
+
+Release body: [v0.5.0](docs/releases/v0.5.0.md).
+
 ## 0.4.0 (2026-09-24)
 
 - Expanded menu music into an ordered four-track playlist using the three new owner-supplied themes.
